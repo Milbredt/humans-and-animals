@@ -9,6 +9,11 @@ namespace humans_and_animals
         static void Main(string[] args)
         {
             Console.Clear();
+
+
+            // Gör en klass som heter Elephant som ärver ifrån Animal.
+            // Gör likadant med en Lion som äter kött.
+                        
             Animal elephantOne = new Animal("Dolores", "Elephant", 0);
 
             //Lista med samtiliga djur.
@@ -30,6 +35,10 @@ namespace humans_and_animals
 
                 for (int i = 0; i < animalsList.Count; i++)
                 {
+                    // Det hade då räckt med att skriva ut objektet utan metodanrop.
+                    // Om du hade en ToString().
+                    // Console.WriteLine(animalsList[i]);
+
                     Console.WriteLine(animalsList[i].Content());
                 }
             }

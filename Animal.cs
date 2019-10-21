@@ -18,6 +18,7 @@ namespace humans_and_animals
             HungerLevel = hungerLevel;
         }
 
+        // Du skulle kunnna byta ut Content metoden med en ToString.
         public string Content()
         {
             string str =  Type + "en " + Name;
