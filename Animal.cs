@@ -7,21 +7,19 @@ namespace humans_and_animals
     class Animal
     {
         public string Name {get; set;}
-        public string Type {get; set;}
         public int HungerLevel {get; set;}
 
         //Konstrouktor?
-        public Animal (string name, string type, int hungerLevel)
+        public Animal (string name, int hungerLevel)
         {
             Name = name;
-            Type = type;
             HungerLevel = hungerLevel;
         }
 
         // Du skulle kunnna byta ut Content metoden med en ToString.
         public string Content()
         {
-            string str =  Type + "en " + Name;
+            string str =  "Djuret heter " + Name;
             return str;
         }
 

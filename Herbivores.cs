@@ -2,10 +2,14 @@ using System;
 using System.Collections.Generic;
 
 
-// namespace humans_and_animals
-// {
-//     class Herbivores:Animal
-//     {
+namespace humans_and_animals
+{
+    class Herbivores : Animal
+    {
+        public Herbivores(string name) : base(name, 10)
+        {
+            
+        }
         
-//     }
-// }
+    }
+}
