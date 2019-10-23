@@ -8,26 +8,41 @@ namespace humans_and_animals
     {
         static void Main(string[] args)
         {
-            Console.Clear();
-            Animal elephantOne = new Animal("Dolores", "Elephant", 0);
-
-            //Lista med samtiliga djur.
+            //Console.Clear();
             List<Animal> animalsList = new List<Animal>();
-            //Lista med hungriga växtätare.
-            List<Animal> hungryVeggies = new List<Animal>();
-            //Lista med hungriga köttätare.
-            List<Animal> hungryMeaties = new List<Animal>();
 
-            animalsList.Add(elephantOne);
+            // Elephant elephant = new Elephant("Dolores");
+            // animalsList.Add(elephant);
+            // elephant = new Elephant("Flores");
+            // animalsList.Add(elephant);
 
-            Console.WriteLine("Välkommen till djurparken!\nHär finns följande djur:");
+            // Giraffe giraffe = new Giraffe("Charlie");
+            // animalsList.Add(giraffe);
+
+            // Coyote coyote = new Coyote("Huff");
+            // animalsList.Add(coyote);
+            // coyote = new Coyote("Puff");
+            // animalsList.Add(coyote);
+
+            Seal seal = new Seal("Bobby");
+            animalsList.Add(seal);
+
+            // Bear bear = new Bear("Bobo");
+            // animalsList.Add(bear);
+
+
+
+
+            Leaf leaf = new Leaf(50);
+            Meat meat = new Meat(10);
+
+            Console.WriteLine("Välkommen till djurparken!\nHär finns följande djur:\n");
 
             if (animalsList.Count != 0)
             {
                 //loopar igenom listan animallist. 
                 // Indexerar listan och kör metoden content på varje element i listan. 
                 // Metoden content ligger i varje klass.  
-
                 for (int i = 0; i < animalsList.Count; i++)
                 {
                     Console.WriteLine(animalsList[i].Content());
@@ -36,91 +51,63 @@ namespace humans_and_animals
             Console.ReadKey();
 
             // Day loop
-            int nrOfMeatLeft = 50;
-            int nrOfVeggiesLeft = 5;
             int day = 0;
-            bool loopOne = true;
-            do
+            while (true)
             {
                 Console.Clear();
                 day++;
                 Console.WriteLine("Det är dag " + day + ":");
-
-                elephantOne.HungerLevel++;
-
-                //Om elefantens hungernivå nått upp till 3 läggs elefanten till i listan över växtätare
-                //som behöver äta och dess hungernivå nollställs.
-                if (elephantOne.HungerLevel == 3)
+                if (leaf.Level == 0)
                 {
-                    hungryVeggies.Add(elephantOne);
-                    elephantOne.HungerLevel = 0;
+                    Console.WriteLine("Det är slut på blad. Alla växtätare kommer nu att dö. Köttätarna kan dock äta upp deras lik och leva ett tag till...");
+                    Console.WriteLine("Programmet avslutas");
+                    Console.ReadKey();
+                    break;
                 }
-                else
+                if (meat.Level == 0)
                 {
-                    Console.WriteLine("Inget djur är hungrigt.");
+                    Console.WriteLine("Det är slut på kött. Alla köttätare komer nu att dö.");
+                    Console.WriteLine("Programmet avslutas");
+                    break;
                 }
 
-                //Kör metoder Hungry som tar in listorna med hungriga växtätare och hungriga köttätare
-                Hungry(hungryVeggies, hungryMeaties);
 
 
-                //Animal.HungerLevel ++;
-                //Kan man göra så?
-
-                // if (elephantOne.HungerLevel == 3)
-                // {
-                //    elephantOne.HungerLevel = 0;
-
-                //    if (nrOfVeggiesLeft > 0)
-                //    {
-                //        //Giraffen Pelle fick äta blad, det finns 49 blad kvar.
-                //         Console.WriteLine(elephantOne.Type + "en " + elephantOne.Name + " äter ett blad.");
-                //         nrOfVeggiesLeft --;
-                //         Console.WriteLine("Det finns " + nrOfVeggiesLeft + " blad kvar.");
-                //    }
-
-                // }
-                // else
-                // {
-                //     Console.WriteLine("Inget djur är hungrigt.");
-                //     Console.WriteLine("Det finns " + nrOfVeggiesLeft + " blad och " + nrOfMeatLeft + " köttbitar kvar.");
-                // }
-                // LÄGG TILL DIN NYA KOD HÄR
-
-                // Wait for the next day
-
-                //Console.WriteLine("TEST TEST TEST!");
-                //Console.WriteLine(elephantOne.ToString());
-                Console.ReadKey();
-            }while (loopOne);
-
-            //Metoder Hungry. Tar emot två listor. Om listan veggies innehåller något så går den igenom den och skriver ut innehållet
-            //samt drar av ett blad från variablen nrOfVeggiesLef.
-            void Hungry(List<Animal> veggies, List<Animal> meaties)
-            {
-                if (veggies.Count != 0)
+                foreach (Animal animal in animalsList)
                 {
-                    for (int i = 0; i < veggies.Count; i++)
+                    animal.HungerLevel++;
+
+                    if (animal.HungryAt == animal.HungerLevel)
                     {
-                        if (nrOfVeggiesLeft > 0)
-                        {
-
-                            Console.Write(veggies[i].Content());
-                            Console.WriteLine(" äter ett blad.");
-                            nrOfVeggiesLeft--;
-                            Console.WriteLine("Det finns " + nrOfVeggiesLeft + " blad kvar.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Det är slut på blad. Djuren dör och programmet avslutas...");
-                            loopOne = false;
-                            break;
-                            
-                        }
+                        animal.IsHungry = true;
                     }
                 }
-                hungryVeggies.Clear();
+
+                foreach (Animal animal in animalsList)
+                {
+                    if (animal.HungryAt != animal.HungerLevel)
+                        Console.WriteLine(animal.Type + "en " + animal.Name + " behöver inte äta.");
+                }
+
+                foreach (Animal animal in animalsList)
+                {
+                    if (animal.IsHungry == true)
+                    {
+
+                        animal.Eat();
+                        Console.WriteLine(animal.Type + "en " + animal.Name + " var hungrig och åt ett blad." + leaf);
+                        animal.IsHungry = false;
+                    }
+                }
+
+
+
+                Console.ReadKey();
             }
+
+
+
+
 
 
         }
