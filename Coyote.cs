@@ -14,6 +14,7 @@ namespace humans_and_animals
             HungerLevel = 0;
             HungryAt = 15;
             IsHungry = false;
+            FoodType = "meat";
         }
 
         public override void Eat(Meat meat)

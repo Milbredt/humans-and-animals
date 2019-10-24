@@ -6,9 +6,10 @@ namespace humans_and_animals
         {
             Level = level;
         }
-
+        //Metoden ToString(). Kallas på med ordet leaf.
         public override string ToString()
         {
+            //Skriver ut hur många blad det finns kvar.
             return " Det finns nu " + Level + " blad kvar.";
         }
 

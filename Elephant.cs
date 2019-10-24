@@ -14,13 +14,20 @@ namespace humans_and_animals
             HungerLevel = 0;
             HungryAt = 10;
             IsHungry = false;
+            FoodType = "leaf";
         }
-
+        //Metoden Eat. Tar in antalet kvarvarande blad. Nollställer HungerLevel samt drar bort ett blad från antalet blad.
         public override void Eat(Leaf leaf)
         {
             HungerLevel = 0;
             leaf.Level--;
 
         }
+        // Viktors version av ovanstående.
+        // public override void Eat(Leaf leaf)
+        // {
+        //     HungerLevel = 0;
+        //     leaf.RemoveOne();
+        //}
     }
 }

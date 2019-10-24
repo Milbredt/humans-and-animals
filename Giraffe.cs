@@ -14,6 +14,7 @@ namespace humans_and_animals
             HungerLevel = 0;
             HungryAt = 7;
             IsHungry = false;
+            FoodType = "leaf";
         }
 
         public override void Eat(Leaf leaf)
